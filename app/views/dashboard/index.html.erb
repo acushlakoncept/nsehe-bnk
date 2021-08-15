@@ -1,32 +1,4 @@
 
-<header class="header">
-    <div class="container">
-        <%= image_tag("arbank_white.png", class: "logo") %>
-        <div class="balance-box">
-        <h4>Account Balance</h4>
-        <h2>$205</div>
-        </div>
-    </div>
-</header>
-  <div class="navbar-dark bg-dark">
-    <nav class="navbar navbar-expand-lg container">
-        <div class=" navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Make Deposit</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Withdraw</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Transaction History</a>
-            </li>
-            </ul>
-        </div>
-        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-danger"  %>
-    </nav>
-  </div>
-
     <section class="user-dashboard container mt-4">
         <h1><strong>Welcome</strong> Uduak Essien</h1>
         <small class="text-secondary"><span class="text-danger">Your last login:</span> 15-August-2021 07:08:51 PM </small>

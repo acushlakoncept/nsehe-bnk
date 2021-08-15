@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI Rayan Investment Bank</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+
+  <body>
+<header class="header">
+    <div class="container">
+        <%= image_tag("arbank_white.png", class: "logo") %>
+        <div class="balance-box">
+        <h4>Account Balance</h4>
+        <h2>$205</div>
+        </div>
+    </div>
+</header>
+  <div class="navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg container">
+        <div class=" navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Make Deposit</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Withdraw</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Transaction History</a>
+            </li>
+            </ul>
+        </div>
+        <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-danger"  %>
+    </nav>
+  </div>
+
+    <%= yield %>
+   <footer class="footer">
+    <p>AI Rayan Investment Bank Inc. © 2021 / All Rights Reserved</p>
+    </footer>
+  </body>
+</html>
