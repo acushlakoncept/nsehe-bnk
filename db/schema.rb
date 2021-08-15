@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_164923) do
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "country", default: "", null: false
+    t.string "state", default: "", null: false
     t.string "city", default: "", null: false
     t.string "address", default: "", null: false
     t.string "security_question", default: "", null: false
