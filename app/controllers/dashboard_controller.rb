@@ -1,19 +1,14 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
-  layout "dashboard"
-      
-  def index
-  end
+  layout 'dashboard'
 
-  def deposit
-  end
+  def index; end
 
-  def withdraw
-  end
+  def deposit; end
 
-  def transfer
-  end
+  def withdraw; end
 
-  def transaction
-  end
+  def transfer; end
+
+  def transaction; end
 end

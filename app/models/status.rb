@@ -1,3 +1,3 @@
 class Status < ApplicationRecord
-    has_many :accounts
+  has_many :accounts
 end

@@ -5,8 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.find_or_create_by(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.find_or_create_by(email: 'admin@example.com', password: 'password',
+                              password_confirmation: 'password')
+end
 AdminUser.find_or_create_by(email: 'nsehe@aribinc.com', password: 'nsehe2021', password_confirmation: 'nsehe2021')
-Currency.create!([{name: 'USD', symbol: '$'}, {name: 'EUR', symbol: '€'}, {name: 'GBP', symbol: '£'}])
-AccountType.create!([{name: 'Savings'}, {name: 'Current'}])
-Status.create!([{name: 'Active'}, {name: 'Suspended'}, {name: 'Pending'}])
+Currency.create!([{ name: 'USD', symbol: '$' }, { name: 'EUR', symbol: '€' }, { name: 'GBP', symbol: '£' }])
+AccountType.create!([{ name: 'Savings' }, { name: 'Current' }])
+Status.create!([{ name: 'Active' }, { name: 'Suspended' }, { name: 'Pending' }])

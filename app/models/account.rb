@@ -11,7 +11,7 @@ class Account < ApplicationRecord
 
   def gen_account_number
     self.account_number = loop do
-      number = ('%010d' % rand(0..9999999999)).to_s
+      number = ('%010d' % rand(0..9_999_999_999)).to_s
       break number unless Account.exists?(account_number: number)
     end
   end
