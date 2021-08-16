@@ -45,3 +45,13 @@
     position: fixed;
     bottom: 0;
 }
+
+.raya-link {
+    color: #b7410e;
+    text-decoration: none;
+
+    &:hover {
+        font-weight: bold;
+        color: #b7410e;
+    }
+}
