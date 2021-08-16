@@ -10,22 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_213954) do
+ActiveRecord::Schema.define(version: 2021_08_15_230812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "account_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "accounts", force: :cascade do |t|
-    t.integer "account_number"
-    t.string "acccount_type"
+    t.string "account_number"
+    t.bigint "account_type_id", null: false
     t.string "description", default: "", null: false
-    t.string "currency", default: "USD", null: false
+    t.bigint "currency_id", null: false
     t.integer "balance", default: 0, null: false
-    t.string "status"
+    t.bigint "status_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_number"], name: "index_accounts_on_account_number"
+    t.index ["account_type_id"], name: "index_accounts_on_account_type_id"
+    t.index ["currency_id"], name: "index_accounts_on_currency_id"
+    t.index ["status_id"], name: "index_accounts_on_status_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
@@ -39,6 +48,27 @@ ActiveRecord::Schema.define(version: 2021_08_15_213954) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "description", default: "", null: false
+    t.string "debits", default: "", null: false
+    t.string "credits", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,5 +99,8 @@ ActiveRecord::Schema.define(version: 2021_08_15_213954) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "account_types"
+  add_foreign_key "accounts", "currencies"
+  add_foreign_key "accounts", "statuses"
   add_foreign_key "accounts", "users"
 end
