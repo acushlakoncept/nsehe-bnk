@@ -1,10 +1,18 @@
 class Account < ApplicationRecord
   belongs_to :user
-  before_save :account_number
+  belongs_to :status
+  belongs_to :account_type
+  belongs_to :currency
+  before_create :gen_account_number
+
+  validates! :account_number, uniqueness: true
 
   private
 
-  def account_number
-    self.account_number = ('%010d' % rand(0..9999999999)).to_i
+  def gen_account_number
+    self.account_number = loop do
+      number = ('%010d' % rand(0..9999999999)).to_s
+      break number unless Account.exists?(account_number: number)
+    end
   end
 end
