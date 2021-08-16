@@ -1,29 +1,31 @@
 
     <section class="user-dashboard container mt-4">
-        <h1><strong>Welcome</strong> Uduak Essien</h1>
-        <small class="text-secondary"><span class="text-danger">Your last login:</span> 15-August-2021 07:08:51 PM </small>
+        <%= render 'welcome' %>
 
         <table class="table table-bordered table-responsive table-striped table-hover table-sm">
                 <thead>
                 <tr>
                     <th scope="col">Account Number</th>
                     <th scope="col">Account Type</th>
-                    <th scope="col">Currency</th>
                     <th scope="col">Balance</th>
                     <th scope="col">Account Status</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td><span href="#" style="color: #e69525; font-weight: 700;">2985470293</span></td>
-                    <td>Savings</td>
-                    <td>USD</td>
-                    <td>$250.00</td>
-                    <td>
-                        <span class="status-badge status-badge-danger">active</span>
-                    </td>
-                </tr>
+                <% if current_user.has_account? %>  
+                    <tr>
+                        <td><span href="#" style="color: #e69525; font-weight: 700;"><%= current_user.account_number %></span></td>
+                        <td><%= current_user.account_type %></td>
+                        <td><%= current_user.balance %></td>
+                        <td>
+                            <span class="<%= "status-badge status-badge-#{current_user.status_style}" %>">
+                            <%= current_user.account_status %>
+                            </span>
+                        </td>
+                    </tr>
+                <% end %>
                 </tbody>
             </table>
+            <%= "<p>Your account is yet to be activated</p>".html_safe unless current_user.has_account? %>
     </section>
