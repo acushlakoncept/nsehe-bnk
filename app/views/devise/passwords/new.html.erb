@@ -1,16 +1,35 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+<div class="login-box">
+  <div class="login-top text-center">
+  <%= image_tag("arbank_white.png", class: "logo mb-2") %>
+   <h4>Forgot your password?</h4>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+  <div class="form-box">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= render "devise/shared/links" %>
+            <div class="form-group mb-4">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+            </div>
+
+              <div class="loginbttm mt-4">
+                <div class="col-lg-6 login-btm login-text">
+                   
+                </div>
+                <div class="login-btm login-button">
+                  <%= f.submit "Send me reset password instructions", class: "btn btn-danger pr-2" %>
+                </div>
+              </div>
+            <% end %>
+    </div>
+   <%= link_to 'Sign up', new_registration_path(resource_name), class: "raya-link" %>    
+   <%= link_to 'Login', new_session_path(resource_name), class: "raya-link" %>
+   </div>
+</div>
+
+
+
+
+
+
