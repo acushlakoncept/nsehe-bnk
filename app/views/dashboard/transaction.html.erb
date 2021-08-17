@@ -1,3 +1,25 @@
 <section class="user-dashboard container mt-4">
    <%= render 'welcome' %>
+
+           <table class="table table-bordered table-responsive table-striped table-hover table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Debits</th>
+                    <th scope="col">Credits</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% if current_user.has_account? %>  
+                  <% @transactions.each do |transaction| %>
+                    <tr>
+                        <td><%= transaction.description %></td>
+                        <td><%= transaction.debits %></td>
+                        <td><%= transaction.credits %></td>
+                    </tr>
+                    <% end %>
+                <% end %>
+                </tbody>
+            </table>
 </section>

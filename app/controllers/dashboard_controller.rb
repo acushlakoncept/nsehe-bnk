@@ -10,5 +10,7 @@ class DashboardController < ApplicationController
 
   def transfer; end
 
-  def transaction; end
+  def transaction
+    @transactions = current_user.transactions
+  end
 end
