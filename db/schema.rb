@@ -10,96 +10,100 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_815_230_812) do
+ActiveRecord::Schema.define(version: 2021_08_16_204229) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'account_types', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "account_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'accounts', force: :cascade do |t|
-    t.string 'account_number'
-    t.bigint 'account_type_id', null: false
-    t.string 'description', default: '', null: false
-    t.bigint 'currency_id', null: false
-    t.integer 'balance', default: 0, null: false
-    t.bigint 'status_id', null: false
-    t.bigint 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['account_number'], name: 'index_accounts_on_account_number'
-    t.index ['account_type_id'], name: 'index_accounts_on_account_type_id'
-    t.index ['currency_id'], name: 'index_accounts_on_currency_id'
-    t.index ['status_id'], name: 'index_accounts_on_status_id'
-    t.index ['user_id'], name: 'index_accounts_on_user_id'
+  create_table "accounts", force: :cascade do |t|
+    t.string "account_number"
+    t.bigint "account_type_id", null: false
+    t.string "description", default: "", null: false
+    t.bigint "currency_id", null: false
+    t.integer "balance", default: 0, null: false
+    t.bigint "status_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_number"], name: "index_accounts_on_account_number"
+    t.index ["account_type_id"], name: "index_accounts_on_account_type_id"
+    t.index ["currency_id"], name: "index_accounts_on_currency_id"
+    t.index ["status_id"], name: "index_accounts_on_status_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table 'admin_users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_admin_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_admin_users_on_reset_password_token', unique: true
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table 'currencies', force: :cascade do |t|
-    t.string 'name'
-    t.string 'symbol'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'statuses', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'transactions', force: :cascade do |t|
-    t.string 'description', default: '', null: false
-    t.string 'debits', default: '', null: false
-    t.string 'credits', default: '', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "transactions", force: :cascade do |t|
+    t.string "description", default: "", null: false
+    t.string "debits", default: "", null: false
+    t.string "credits", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'first_name', default: '', null: false
-    t.string 'last_name', default: '', null: false
-    t.string 'username', default: '', null: false
-    t.string 'email', default: '', null: false
-    t.string 'country', default: '', null: false
-    t.string 'state', default: '', null: false
-    t.string 'city', default: '', null: false
-    t.string 'address', default: '', null: false
-    t.string 'security_question', default: '', null: false
-    t.string 'security_answer', default: '', null: false
-    t.string 'phone_number', default: '', null: false
-    t.string 'status', default: 'inactive', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.string 'current_sign_in_ip'
-    t.string 'last_sign_in_ip'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "username", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "country", default: "", null: false
+    t.string "state", default: "", null: false
+    t.string "city", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "security_question", default: "", null: false
+    t.string "security_answer", default: "", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "status", default: "inactive", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key 'accounts', 'account_types'
-  add_foreign_key 'accounts', 'currencies'
-  add_foreign_key 'accounts', 'statuses'
-  add_foreign_key 'accounts', 'users'
+  add_foreign_key "accounts", "account_types"
+  add_foreign_key "accounts", "currencies"
+  add_foreign_key "accounts", "statuses"
+  add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "users"
 end

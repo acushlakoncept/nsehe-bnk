@@ -9,7 +9,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
-  has_one :account
+  has_one :account, dependent: :destroy
+  has_many :transactions, dependent: :destroy
 
   def has_account?
     account ? true : false

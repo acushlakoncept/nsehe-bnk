@@ -16,13 +16,4 @@ ActiveAdmin.register User do
     column :created_at
     actions
   end
-
-  form do |f|
-    f.input :first_name
-    f.input :last_name
-    f.input :username
-    f.input :email
-    f.input :country
-    f.actions
-  end
 end
