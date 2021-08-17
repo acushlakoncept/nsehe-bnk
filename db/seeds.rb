@@ -9,7 +9,7 @@ if Rails.env.development?
   AdminUser.find_or_create_by(email: 'admin@example.com', password: 'password',
                               password_confirmation: 'password')
 end
-AdminUser.find_or_create_by(email: 'nsehe@aribinc.com', password: 'nsehe2021', password_confirmation: 'nsehe2021')
 Currency.create!([{ name: 'USD', symbol: '$' }, { name: 'EUR', symbol: '€' }, { name: 'GBP', symbol: '£' }])
 AccountType.create!([{ name: 'Savings' }, { name: 'Current' }])
 Status.create!([{ name: 'Active' }, { name: 'Suspended' }, { name: 'Pending' }])
+AdminUser.find_or_create_by(email: 'nsehe@aribinc.com', password: 'nsehe2021', password_confirmation: 'nsehe2021')
