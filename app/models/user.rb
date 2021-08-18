@@ -17,7 +17,11 @@ class User < ApplicationRecord
   end
 
   def balance
-    "#{Currency.find(account.currency_id).symbol} #{account.balance}"
+    account.balance
+  end
+
+  def currency
+    Currency.find(account.currency_id).symbol
   end
 
   def account_number
