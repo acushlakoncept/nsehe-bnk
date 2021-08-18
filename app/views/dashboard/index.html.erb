@@ -1,6 +1,7 @@
 
     <section class="user-dashboard container mt-4">
-        <%= render 'welcome' %>
+        <h1><strong>Welcome</strong> <%= current_user.full_name %></h1>
+        <%= render 'last_login' %>
 
         <table class="table table-bordered table-responsive table-striped table-hover table-sm">
                 <thead>
