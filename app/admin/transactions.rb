@@ -1,23 +1,15 @@
 ActiveAdmin.register Transaction do
-    permit_params :description, :debits, :credits, :user_id
+    permit_params :description, :debits, :credits, :user_id, :transaction_date
 
-    # controller do
-    #     # This code is evaluated within the controller class
-    
-    #     def create
-    #     #   user_id = params[:transaction][:user_id]
-    #     #   desc = params[:transaction][:description]
-    #     #   debit = params[:transaction][:debits]
-    #     #   credit = params[:transaction][:credits]
-    #     #   user = User.find(user_id)
-    #       Transaction.create(transaction_params)
-    #     #   byebug
-    #     end
+    actions :all
 
-    #     private
-
-    #     def transaction_params
-    #       params.require(:transaction).permit(:description, :debits, :credits, :user_id)
-    #     end
-    #   end
+    index do
+        selectable_column
+        column :user
+        column :description
+        column :debits
+        column :credits
+        column :transaction_date
+        actions
+    end
 end
