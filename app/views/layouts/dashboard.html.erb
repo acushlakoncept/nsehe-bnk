@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AI Rayan Investment Bank</title>
+    <title>AL Qasim Investment Bank</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,7 @@
   <body>
 <header class="header">
     <div class="container">
-        <%= image_tag("arbank_white.png", class: "logo") %>
+        <%= image_tag("alq_logo_white.png", class: "logo") %>
         <% if current_user.has_account? %>
         <div class="balance-box">
         <h4>Account Balance</h4>
@@ -52,7 +52,7 @@
 
     <%= yield %>
    <footer class="footer">
-    <p>AI Rayan Investment Bank Inc. © 2021 / All Rights Reserved</p>
+    <p>AL Qasim Investment Bank © 2023 / All Rights Reserved</p>
     </footer>
   </body>
 </html>
