@@ -18,7 +18,7 @@
                     <tr>
                         <td><span href="#" style="color: #e69525; font-weight: 700;"><%= current_user.account_number %></span></td>
                         <td><%= current_user.account_type %></td>
-                        <td><%= current_user.currency %><%= number_with_delimiter current_user.balance %></td>
+                        <td><%= currency_symbol(current_user.currency) %><%= number_with_delimiter current_user.balance %></td>
                         <td>
                             <span class="<%= "status-badge status-badge-#{current_user.status_style}" %>">
                             <%= current_user.account_status %>

@@ -18,7 +18,7 @@
         <% if current_user.has_account? %>
         <div class="balance-box">
         <h4>Account Balance</h4>
-        <h2> <%= current_user.currency %><%= number_with_delimiter current_user.balance %> </div>
+        <h2> <%= currency_symbol(current_user.currency) %><%= number_with_delimiter current_user.balance %> </div>
         </div>
         <% end %>
     </div>
