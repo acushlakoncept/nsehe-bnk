@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   get 'withdraw', to: 'dashboard#withdraw'
   get 'transfer', to: 'dashboard#transfer'
   get 'transaction', to: 'dashboard#transaction'
+
+  resources :users do
+    member do
+      post 'activate_user'
+    end
+  end
 end
