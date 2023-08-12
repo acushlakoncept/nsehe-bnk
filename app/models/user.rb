@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   validates_presence_of :first_name, :last_name, :username, :country, :state, :city, :address, :security_question
+  
+  has_one :account
 
   def full_name
     "#{first_name} #{last_name}"
@@ -21,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def currency
-    Currency.find(account.currency_id).symbol
+    account.currency
   end
 
   def account_number
@@ -29,14 +31,22 @@ class User < ApplicationRecord
   end
 
   def account_type
-    AccountType.find(account.account_type_id).name
+    account.account_type
   end
 
   def account_status
-    Status.find(account.status_id).name
+    account.status
   end
 
   def status_style
     account_status == 'Active' ? 'success' : 'danger'
+  end
+
+  def activate_user
+    if account.nil?
+      Account.create(user: self, account_type: 'Savings', currency: 'USD', status: 'Active')
+    else
+      account.update(account_type: 'Savings', currency: 'USD', status: 'Active')
+    end
   end
 end
