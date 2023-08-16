@@ -7,6 +7,11 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :username, :country, :state, :city, :address, :security_question
   
   has_one :account
+  after_create :send_email
+
+  def send_email
+    SignUpMailerJob.perform_later
+  end
 
   def full_name
     "#{first_name} #{last_name}"
