@@ -117,4 +117,16 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.action_mailer.default_url_options = { host: 'smtp-relay.brevo.com' }
+  config.action_mailer.asset_host = config.action_controller.asset_host
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    address: 'smtp-relay.brevo.com',
+    port: 465,
+    user_name: 'theskillgarage@theskillgarage.com',
+    password: 'xsmtpsib-937e0912f43847d69b89f9620712dd97eb66570feed3b30de030a817c216697c-zL4A7K0TfXVYjk3h',
+    authentication: :plain,
+    enable_starttls_auto: true
+}
 end
